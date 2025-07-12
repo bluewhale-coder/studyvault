@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+<style>
+  body{
+    background-color: #8a75be;
+  }
+</style>
+</head><body class="centered">
+  <div class="form-box">
+    <h2>Welcome, {{ role.title() }}</h2>
+    <!-- <a href="/notes" class="btn">Notes</a> -->
+    <a href="/qp"    class="btn">Documents</a>
+    <a href="/gallery" class="btn">Gallery</a>
+    <a href="/skills"  class="btn">Skills</a>
+    <a href="/logout"  class="btn danger">Logout</a>
+  </div>
+</body></html>

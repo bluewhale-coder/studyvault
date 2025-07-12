@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>StudyVault</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+  <script src="{{ url_for('static',filename='js/script.js') }}" defer></script>
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #8a75be;
+      
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      gap: 40px;
+    }
+
+    .logo img {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+    }
+
+    /* Base styles */
+.navbar {
+  background: #34313a;
+  color: white;
+  padding: 15px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  border-radius: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Toggle icon (mobile) */
+.menu-toggle {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  display: none;
+  border-radius: 0;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #8a75be;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+}
+    .btu, .bte {
+      padding: 8px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btu {
+      background-color: #007bff;
+    }
+
+    .bte {
+      background-color: orangered;
+    }
+
+    .landing {
+      background-image: url("{{ url_for('static', filename='images/6243378.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 120px; /* space below navbar */
+      padding-left: 10%;
+      padding-right: 10%;
+      backdrop-filter: blur(15px);
+    }
+
+    .landing-text h1 {
+      color: rgb(127, 23, 153);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .landing-text p {
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      margin-top: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .hero h2 {
+      color: blue;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: orangered;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 80px 10%;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      margin: 40px 0;
+      border-radius: 20px;
+    }
+
+    section h1 {
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    section p {
+      color: #333;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      height: 300px;
+    }
+    .abo {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    img:hover {
+      transform: scale(2.05);
+      transition: transform 0.3s ease;
+
+    }
+    
+    
+  </style>
+</head>
+<script>
+  const toggle = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+<body>
+  <nav class="navbar">
+    <div class="logo"><img src="static\images\logo1.png" alt="logo" height="50px" width="60px" style="position: absolute; left: 10px; top: 0%; margin-top: 5px;" ></div>
+    <ul class="nav-links">
+      <li><a href="/" style="color: orangered;">Home</a></li>
+      <!-- <li><a href="/notes" style="color: orangered;">Notes</a></li> -->
+      <li><a href="/qp" style="color: orangered;">Documents</a></li>
+      <li><a href="/gallery" style="color: orangered;">Gallery</a></li>
+      <li><a href="/skills" style="color: orangered;">Skills</a></li>
+      {% if session.role %}
+        <li><a href="/dashboard" style="color: orangered;">Dashboard</a></li>
+        <li><a href="/logout" class="bte">Logout</a></li>
+      {% else %}
+        <li><a href="/login" class="btu">Login</a></li>
+      {% endif %}
+    </ul>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="landing">
+    <div class="landing-text">
+      
+    </div>
+    <div class="hero" style="position: absolute; top: 400px; left: 10%;">
+        <h2 style="color: rgb(79, 68, 179);">Empower Your Learning Journey</h2>
+        <p style="color: rgb(199, 185, 185);">Access notes, question papers, and resources to enhance your skills.</p>
+        <a href="/notes" class="btn" style="background-color: orangered;">Get Started</a>
+    </div>
+    <style>
+      .hero{
+        background-color:rgba(255,255,255,0.1);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 10px;
+      }
+    </style>
+  </section>
+  <section id="about">
+  <h1>About</h1>
+  <p class="abo">The Government of Tamilnadu established our college in the year 1969. Courses such as BA History-(1971-1972), B.Com-(1971-1972), B.Sc Maths (1974-1975) ), B.Sc Zoology (1978-1979), B.Sc Chemistry (1979-1980), BA Tamil (1980-1981), BA English (1980-1981), BA Economics (1985-1986), B.Sc Zoology Tamil Medium (1993-1994) and B.Sc Computer science (1998-1999) were introduced over a period of three decades (1965-1999). The college was accredited by NAAC 2005 and it is obtained the B+ status.
+ 
+The Government of Tamilnadu introduced the shift system in our college in the academic year 2007-2008. In the II Shift Courses such as BA (Tamil), BA (English), BCom, BA (Economics) and B.Sc (Computer Science) where introduced. Subsequently in the I Shift B.Sc Physics (2011-2012) , B.Sc Physics (2011-2012), B.Sc Botany (2011-2012), MA Economics (2011-2012), M.Com (2011-2012), M.Sc., Computer Science (2011-2012) were introduced. The courses such as MA History (2013-2014), MA Tamil (2013-2014), MA English (2013-2014), M.Sc Zoology (2013-2014), M.Sc Botany, MSc Physics (2013-2014) and M.Sc Maths (2013-2014) were introduced. In addition the research programmes such as Ph.D (History), Ph.D (Economics) and as Ph.D (Physics) were introduced.
+ 
+The Government of Tamilnadu upgraded our college as Grade – I college in the year 2017.
+</p>
+</section>
+
+<section id="gallery">
+  <h1>Gallery</h1>
+  <div class="gallery">
+    <img src="https://image3.jdomni.in/banner/09122024/4F/B6/D0/91457CC24ED80307BC1E3B8AC6_1733749196603.png?output-format=webp" alt="Gallery Image 1" />
+    <img src="https://image2.jdomni.in/banner/12082024/CF/B9/2D/21B15EB63CDDAC4688E7332493_1723442426143.png?output-format=webp" alt="Gallery Image 2" />
+    <img src="https://image3.jdomni.in/banner/25072024/CF/4C/B2/A458FCAAB7B63F34ABD2CD498F_1721891033633.jpg?output-format=webp" alt="Gallery Image 3" />
+     <img src="https://image2.jdomni.in/banner/25072024/6E/77/B8/477AD1076E91EB6371BC10BDC2_1721890569913.png?output-format=webp" alt="Gallery Image 4" />
+    <img src="https://image3.jdomni.in/banner/21042022/AD/A9/2E/1CDE20E89B281281A8445A14CE_1650522300149.jpg?output-format=webp" alt="Gallery Image 5" />
+    <img src="https://image3.jdomni.in/banner/11102019/FE/6F/7C/9F79F95F073E838612D100F926_1570770697849.jpg?output-format=webp" alt="Gallery Image 6" />
+  </div>
+</section>
+
+<section id="location">
+  <h1>Location</h1>
+  <p>We are located in melur, Tamil Nadu.</p>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.675714413024!2d78.34321717407826!3d10.043595772285027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00eadeffffffff%3A0xe5af2ef4fe78f7a4!2sGovernment%20arts%20college%20melur!5e0!3m2!1sen!2sin!4v1751535737930!5m2!1sen!2sin"
+    width="100%"
+    height="300"
+    style="border:0; border-radius: 10px;"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+</section>
+
+<section id="contact">
+  <div class="abo">
+  <h1>Contact</h1>
+  <p>Enquiries: gacmelur@yahoo.co.in</p>
+  <p>Phone: 9344576046</p>
+  <p>Landline: o452-2902303</p>
+  <p>(10A.M to 5P.M)</p>
+  <p>Address: Government Arts College, Melur, Madurai District, Tamil Nadu, India</p>
+  <a href="http://www.melurgac.in/">our college offial website</a> <br>
+  <a href="https://mkuniversity.ac.in/new/">university offial website</a>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notes | StudyVault</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <style>
+      .note-card {
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 10px 0;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .note-title {
+        font-weight: bold;
+        font-size: 18px;
+        color: #2c3e50;
+      }
+      .note-meta {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+      .note-actions {
+        margin-top: 10px;
+      }
+      .btn {
+        padding: 6px 12px;
+        border: none;
+        background-color: #5c30cc;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+      .btn.danger {
+        background-color: #cc305c;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="content">
+      <h2>Notes</h2>
+
+      {% if role == 'admin' %}
+      <form class="upload-form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required />
+        <input type="text" name="year" placeholder="Year" required />
+        <input type="text" name="desc" placeholder="Description" required />
+        <button type="submit">Upload</button>
+      </form>
+      {% endif %}
+
+      <div class="cards">
+        {% for f in files %} {% set fname = f.public_id.split('/')[-1] %} {% set
+        parts = fname.split('_', 2) if '_' in fname else['','',''] %}
+        <div class="note-card">
+          <div class="note-title">{{ parts[2] }}</div>
+          <div class="note-meta">
+            Year: {{ parts[0] }}<br />
+            Description: {{ parts[1].replace('_', ' ') }}
+          </div>
+          <div class="note-actions">
+            <a
+              href="https://res.cloudinary.com/dxifrfyac/raw/upload/{{ f.public_id }}"
+              download
+              class="btn"
+              >Download</a
+            >
+            {% if role == 'admin' %}
+            <form
+              action="{{ url_for('delete_note_cloud') }}"
+              method="POST"
+              style="display: inline"
+            >
+              <input type="hidden" name="public_id" value="{{ f.public_id }}" />
+              <button type="submit" class="btn danger">Delete</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notes | StudyVault</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    .note-card {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
+    .note-title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .note-meta {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .note-actions a,
+    .note-actions form {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="content">
+    <h2>Notes</h2>
+
+    {% if role == 'admin' %}
+    <form class="upload-form" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" required />
+      <input type="text" name="year" placeholder="Year" required />
+      <input type="text" name="desc" placeholder="Description" required />
+      <button type="submit">Upload</button>
+    </form>
+    {% endif %}
+
+    <div class="cards">
+      {% for f in files %}
+        {% set fname = f.public_id.split('/')[-1] %}
+        {% set parts = fname.split('_', 2) %}
+        <div class="note-card">
+          <div class="note-title">{{ parts[2] }}</div>
+          <div class="note-meta">
+            Year: {{ parts[0] }}<br />
+            Description: {{ parts[1].replace('_', ' ') }}
+          </div>
+
+          {% set base_url = 'https://res.cloudinary.com/dxifrfyac/raw/upload/' %}
+          <a href="{{ base_url ~ f.public_id }}" class="btn btn-success" download>Download</a>
+
+          {% if role == 'admin' %}
+          <form action="{{ url_for('delete_note_cloud') }}" method="post" style="display:inline;">
+            <input type="hidden" name="public_id" value="{{ f.public_id }}" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html> -->

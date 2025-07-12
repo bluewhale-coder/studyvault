@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyVault</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url("{{ url_for('static', filename='images/6243378.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      gap: 40px;
+    }
+
+    .logo img {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      color: orangered;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btu, .bte {
+      padding: 8px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btu {
+      background-color: #007bff;
+    }
+
+    .bte {
+      background-color: orangered;
+    }
+
+    .landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 120px; /* space below navbar */
+      padding-left: 10%;
+      padding-right: 10%;
+      backdrop-filter: blur(15px);
+    }
+
+    .landing-text h1 {
+      color: rgb(127, 23, 153);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .landing-text p {
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      margin-top: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .hero h2 {
+      color: blue;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: orangered;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 80px 10%;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      margin: 40px 0;
+      border-radius: 20px;
+    }
+
+    section h1 {
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    section p {
+      color: #333;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logoo.png') }}" height="60px" width="60px" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/notes">Notes</a></li>
+      <li><a href="/qp">QP</a></li>
+      <li><a href="/gallery">Gallery</a></li>
+      <li><a href="/skills">Skills</a></li>
+      {% if session.role %}
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout" class="bte">Logout</a></li>
+      {% else %}
+        <li><a href="/login" class="btu">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <!-- ✅ Hero / Landing -->
+  <section class="landing">
+    <div class="landing-text">
+      <h1>Welcome to StudyVault</h1>
+      <p>This platform helps freshers list out notes and question papers effectively.</p>
+    </div>
+    <div class="hero">
+      <h2>Empower Your Learning Journey</h2>
+      <p>Access notes, question papers, and resources to enhance your skills.</p>
+      <a href="/notes" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- ✅ About Section -->
+  <section id="about">
+    <h1>About</h1>
+    <p>This site is part of a college project. It showcases basic web design using HTML, CSS, and JavaScript.</p>
+  </section>
+
+  <!-- ✅ Gallery Section -->
+  <section id="gallery">
+    <h1>Gallery</h1>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/200x150.png?text=Image+1" alt="Gallery Image 1" />
+      <img src="https://via.placeholder.com/200x150.png?text=Image+2" alt="Gallery Image 2" />
+      <img src="https://via.placeholder.com/200x150.png?text=Image+3" alt="Gallery Image 3" />
+    </div>
+  </section>
+
+  <!-- ✅ Location Section -->
+  <section id="location">
+    <h1>Location</h1>
+    <p>We are located in Chennai, Tamil Nadu.</p>
+    <iframe src="https://www.google.com/maps/embed?..."></iframe>
+  </section>
+
+  <!-- ✅ Contact Section -->
+  <section id="contact">
+    <h1>Contact</h1>
+    <p>Email: student@example.com</p>
+    <p>Phone: +91 98765 43210</p>
+  </section>
+
+</body>
+</html>
