@@ -68,7 +68,7 @@
           </div>
 
           {% set base_url = 'https://res.cloudinary.com/dxifrfyac/raw/upload/' %}
-          <a href="{{ base_url }} {{ f.public_id }}" class="btn btn-success" download>Download</a>
+          <a href="{{ base_url }}{{ f.public_id | urlencode }}" class="btn btn-success" download>Download</a>
 
           {% if role == 'admin' %}
           <form action="{{ url_for('delete_qp_cloud') }}" method="post" style="display:inline;">

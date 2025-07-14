@@ -82,7 +82,8 @@ def qp():
 
         if f and allowed_file(f.filename):
             fn = secure_filename(f.filename)
-            public_id = f"{y}_{s.replace(' ', '_')}_{fn}"
+            #public_id = f"{y}_{s.replace(' ', '_')}_{fn}"
+            public_id = f"{y.strip()}_{s.strip().replace(' ', '_')}_{fn.strip()}"
             cloudinary.uploader.upload(f, resource_type="raw", public_id=public_id)
             flash("Question Paper uploaded!", "success")
             return redirect(url_for('qp'))
